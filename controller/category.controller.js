@@ -33,7 +33,7 @@ let getAllCategories =async (req,res,next)=>{
 };
 
 
-//ui will call controller which in turn will open sql connection(database)
+//ui will call router which call controller which in turn call model which call sql connection(database)
 
 let getCategoryById= (req,res,next)=>{res.write("this is for category "+req.params.categoryId);
 res.end()};
