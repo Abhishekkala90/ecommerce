@@ -3,13 +3,13 @@ let dbconnection=require('./../config/db.config');
 let categoryModel=dbconnection.define("categories",{
     id:{
         primaryKey:true,
-        notnull:true,
+        allowNull:false,
         type:sequelize.DataTypes.INTEGER,
         autoIncrement:true
     },
     name:{
-        notNull:true,
+        allowNull:false,
         type:sequelize.DataTypes.STRING
     }
 })  
-module.exports=categoryModel;
+module.exports=categoryModel; 
