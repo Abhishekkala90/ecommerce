@@ -1,16 +1,15 @@
-let express=require('express');
-let productRouter=express.Router();
-let productController=require('../controller/product.controller');
+let express = require("express");
+let productRouter = express.Router();
+let productController = require("../controller/product.controller");
 
-productRouter.get('/',productController.getAllProducts);
+productRouter.get("/", productController.getAllProducts);
 
-productRouter.get('/:productId',productController.getProductById);
+productRouter.get("/:productId", productController.getProductById);
 
+productRouter.post("/", productController.addNewProduct);
 
-productRouter.post('/',productController.addNewProduct);
+productRouter.delete("/:productId", productController.deleteProductById);
 
-productRouter.delete('/:productId',productController.deleteProductById);
+productRouter.put("/:productId", productController.updateProductById);
 
-productRouter.put("/:productId",productController.updateProductById)
-
-module.exports=productRouter;
+module.exports = productRouter;
