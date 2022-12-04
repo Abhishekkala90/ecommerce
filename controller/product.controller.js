@@ -4,47 +4,6 @@ const sequelize = require("sequelize");
 
 const { application } = require("express");
 
-let createTable = async () => {
-  await sequelizeInstance.sync({ force: true });
-  insertProducts();
-  console.log("Table created succesfully");
-};
-let insertProducts = async () => {
-  await Products.bulkCreate([
-    {
-      name: "Samsung Galaxy Note",
-      categoryId: "1",
-      price: 18000,
-    },
-    {
-      name: "Iphone 13",
-      categoryId: "1",
-      price: 60000,
-    },
-    {
-      name: "Sony Bravia",
-      categoryId: "2",
-      price: 40000,
-    },
-    {
-      name: "Boat Rugged",
-      categoryId: "5",
-      price: 4000,
-    },
-    {
-      name: "JBL Storm",
-      categoryId: "5",
-      price: 2000,
-    },
-    {
-      name: "Vu 5",
-      categoryId: "2",
-      price: 32000,
-    },
-  ]);
-};
-//    createTable();
-
 let getAllProducts = async (req, res, next) => {
   let categoryId = req.query.categoryId; //req.query is used for filter ,req.body is used for body & req.params is used for parameters passed.
   let minPrice = req.query.minPrice || 0;
@@ -102,7 +61,7 @@ let filterByPrice = async (minPrice, maxPrice) => {
 const addNewProduct = async (req, res, next) => {
   try {
     let ProductToAdd = req.body;
-    await Products.create(ProductToAdd);
+    await Products.bulkCreate(ProductToAdd);
     res.status(201).send("New Product added");
   } catch (err) {
     // res.status(400).send("Cannot perform this action")  //This syntax saves program from crashing it just catches the error if error occurs.try is mandatory.

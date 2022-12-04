@@ -3,37 +3,12 @@ let sequelizeInstance = require("./../config/db.config");
 let express = require("express");
 let expressApp = express();
 
-let createTable = async () => {
-  await sequelizeInstance.sync({ force: true });
-  insertCategories();
-  console.log("Table created succesfully");
-};
-
-let insertCategories = async () => {
-  await Categories.bulkCreate([
-    {
-      name: "Fashion",
-    },
-    {
-      name: "Mobile",
-    },
-    {
-      name: "Electronics",
-    },
-    {
-      name: "Appliances",
-    },
-  ]);
-};
-
 // let getAllCategories =(req,res,next)=>{res.write("this is for category ");
 // res.end()}; now we need to fetch data so see below.
 
 let getAllCategories = async (req, res, next) => {
   let categories = await Categories.findAll(); //we will send this to  client or ui
-  res
-    .status(200, { "Content-Type": "application/json" })
-    .send(JSON.stringify(categories)); //This syntax is very important  it means status 200 means success and the content is JSON.
+  res.status(200).json(categories); //This syntax is very important  it means status 200 means success and the content is JSON.
 };
 
 //ui will call router which call controller which in turn call model which call sql connection(database)
@@ -93,8 +68,6 @@ let updateCategoryById = async (req, res, next) => {
   res.status(200).send(updatedCategory);
 };
 //body-parser middleware to get the body for post api calls
-
-// createTable() ;
 
 //they are invoked once then commented to generate table and to fill data. so, we don't need to call them again.
 let all = {
