@@ -5,6 +5,7 @@ const serverConfig = require("./config/server.config");
 const dbconnection = require("./config/db.config");
 const Categories = require("./model/category");
 const Products = require("./model/product");
+const Roles = require("./model/role");
 const router = require("./routes/index");
 const ErrorHandler = require("./middlewares/ErrorHandler");
 const app = express();
@@ -12,9 +13,9 @@ app.use(bodyParser.json());
 app.use(router);
 app.use(ErrorHandler); //.use method is a way to use middlewares errorHandler middleware is always written in the last of the middlewares.
 let init = async () => {
-  await dbconnection.sync({ force: true });
+  await dbconnection.sync({ force: true }); //sync is used to create table.
   insertCategories();
-  console.log("Table created succesfully");
+  insertRoles();
 };
 let insertCategories = async () => {
   await Categories.bulkCreate([
@@ -29,6 +30,18 @@ let insertCategories = async () => {
     },
     {
       name: "Appliances",
+    },
+  ]);
+};
+let insertRoles = () => {
+  Roles.bulkCreate([
+    {
+      id: 1,
+      name: "user",
+    },
+    {
+      id: 2,
+      name: "admin",
     },
   ]);
 };
