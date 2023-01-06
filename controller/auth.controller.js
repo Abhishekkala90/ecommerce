@@ -5,7 +5,6 @@ const bcrypt = require("bcryptjs");
 const User = db.users;
 const Role = db.roles;
 const sequelize = require("sequelize");
-const secret = require();
 
 exports.signup = async (req, res) => {
   let user = await User.create({
