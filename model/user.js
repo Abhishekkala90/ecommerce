@@ -4,14 +4,14 @@ const user = dbconnection.define(
   "users",
   {
     username: {
-      type: sequelize.STRING,
+      type: sequelize.DataTypes.STRING,
     },
     email: {
-      type: sequelize.STRING,
+      type: sequelize.DataTypes.STRING,
     },
 
     password: {
-      type: sequelize.STRING,
+      type: sequelize.DataTypes.STRING,
     },
   },
   { timestamps: false }

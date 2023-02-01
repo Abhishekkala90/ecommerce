@@ -4,11 +4,11 @@ const role = dbconnection.define(
   "roles",
   {
     id: {
-      type: sequelize.INTEGER,
+      type: sequelize.DataTypes.INTEGER,
       primaryKey: true,
     },
     name: {
-      type: sequelize.STRING,
+      type: sequelize.DataTypes.STRING,
     },
   },
   { timestamps: false }
